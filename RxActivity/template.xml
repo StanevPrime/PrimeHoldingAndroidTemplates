@@ -1,0 +1,27 @@
+<template 
+    format="4" 
+    revision="1" 
+    name="Rx Activity"
+	minApi="9"
+    minBuildApi="14"
+    description="Create an activity to be implemented as View" >
+
+    <category value="Activity" />
+   
+	
+    <parameter 
+        id="activityName" 
+        name="Activity Name" 
+        type="string"
+        constraints="class|unique|nonempty" 
+        default="Blank" 
+        help="Name of your new Activity" />
+
+	 <thumbs>
+        <!-- default thumbnail is required -->
+        <thumb>template_blank_activity.png</thumb>
+    </thumbs>	
+    <globals file="globals.xml.ftl" /> 
+    <execute file="recipe.xml.ftl" />
+
+</template> 
