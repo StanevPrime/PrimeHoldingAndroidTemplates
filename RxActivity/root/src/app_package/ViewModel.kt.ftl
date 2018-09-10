@@ -1,6 +1,6 @@
 package ${packageName}
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
@@ -46,6 +46,11 @@ private val compositeDisposable = CompositeDisposable()
 
 init{
 }
+
+
+//region Input methods 
+// endregion
+
 
  override fun onCleared() {
         super.onCleared()
