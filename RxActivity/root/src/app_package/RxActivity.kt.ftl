@@ -36,7 +36,7 @@ class ${activityName}Activity : AppCompatActivity() {
 	
 	override fun onStart() {
         super.onStart()
-        viewModel.output
+        viewModel
                 .bind(activityBinding)
                 .addTo(compositeDisposable)
 
@@ -83,11 +83,3 @@ private fun ${viewModel}Output.bind(binding: Activity${activityName}Binding): Li
 
     )
 }
-
-
-fun ${viewModel}Output.bind(activity: ${activityName}Activity): List<Disposable> {
-
-    //TODO insert any bindings here
-    return listOf()
-}
-
