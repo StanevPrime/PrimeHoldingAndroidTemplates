@@ -1,22 +1,20 @@
 package ${packageName}
 
-
 import android.app.Activity
-import android.arch.lifecycle.ViewModelProvider
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 <#if applicationPackage??>
 import ${applicationPackage}.R
 import ${applicationPackage}.databinding.Activity${activityName}Binding
 </#if>
-
-
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import javax.inject.Inject
+
 
 class ${activityName}Activity : AppCompatActivity() {
 
@@ -38,8 +36,8 @@ class ${activityName}Activity : AppCompatActivity() {
 	
 	override fun onStart() {
         super.onStart()
-        viewModel.output
-                .bind(this)
+        viewModel
+                .bind(activityBinding)
                 .addTo(compositeDisposable)
 
     }
@@ -66,9 +64,22 @@ class ${activityName}Activity : AppCompatActivity() {
     }
 }
 
-fun ${viewModel}Output.bind(activity: ${activityName}Activity): List<Disposable> {
-
-    //TODO insert any bindings here
-    return listOf()
+private fun ${viewModel}InputOutput.bind(binding: Activity${activityName}Binding): List<Disposable> {
+    return listOf(
+            output.bind(binding),
+            input.bind(binding)
+    ).flatten()
 }
 
+private fun ${viewModel}Input.bind(binding: Activity${activityName}Binding): List<Disposable> {
+    return listOf(
+
+    )
+}
+
+private fun ${viewModel}Output.bind(binding: Activity${activityName}Binding): List<Disposable> {
+    return listOf(
+
+
+    )
+}
