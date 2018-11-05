@@ -3,6 +3,7 @@
     <global id="resOut" value="${resDir}" />
     <global id="srcOut" value="${srcDir}/${slashedPackageName(packageName)}" />
     <global id="viewModel" value="${activityName}ViewModel" /> 
+    <global id="viewModelName" value="${activityName}" /> 
     <global id="activityLayout" value="activity_${classToResource(activityName)}" />
      <!-- These values are all necessary to utilize the manifest merging code
       included below -->
