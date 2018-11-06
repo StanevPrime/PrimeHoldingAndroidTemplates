@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
+<#import "root://activities/common/kotlin_macros.ftl" as kt>
 <recipe>
-    <#include "../common/recipe_manifest.xml.ftl" />
+    <#include "root://activities/common/recipe_manifest.xml.ftl" />
+    <#include "root://activities/common/recipe_no_actionbar.xml.ftl" />
 
+	 <@kt.addAllKotlinDependencies />
+    <#include "root://activities/common/recipe_manifest.xml.ftl" />
+	
     <instantiate from="src/app_package/RxActivity.kt.ftl"
                  to="${escapeXmlAttribute(srcOut)}/${activityName}Activity.kt" />
 

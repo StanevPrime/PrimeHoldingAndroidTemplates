@@ -15,6 +15,8 @@ import javax.inject.Inject
 import ${applicationPackage}.R
 import ${applicationPackage}.databinding.Activity${activityName}Binding
 import ${applicationPackage}.misc.extension.addTo
+import ${applicationPackage}.application.BaseApplication
+
 	<#if isChildActivity>
 		import ${applicationPackage}.view.base.BaseActivity
 	<#else>
@@ -51,8 +53,8 @@ class ${activityName}Activity :	<#if isChildActivity> BaseActivity()<#else>AppCo
     }
 	
 	<#else>
-    override fun onStart() {
-        super.onStart()
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+		super.onPostCreate(savedInstanceState)
         viewModel
                 .bind(activityBinding)
                 .addTo(compositeDisposable)
