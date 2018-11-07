@@ -92,6 +92,11 @@
 		<instantiate from="root/src/app_package/view/BaseActivity.kt.ftl"
                  to="${escapeXmlAttribute(srcOut)}/view/base/BaseActivity.kt" />		
 	</#if>
+	<#if addLoadingViewModel>
+		<instantiate from="root/src/app_package/viewmodel/LoadingViewModel.kt.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/viewmodel/loading/LoadingViewModel.kt" />	
+	</#if>
+
 
 			 
 	<instantiate from="root/src/app_package/application/BaseApplication.kt.ftl"

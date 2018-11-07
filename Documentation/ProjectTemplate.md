@@ -14,6 +14,7 @@ This project configuration allows you to add many needed files and folder struct
 
   * Add Retrofit Configuration -- this would add the Retrofit dependencies to your gradle, create a base RestApi class plus a NetworkModule for Dagger.
   * Add Base Activity -- This would create a BaseActivity which will handle the management of disposables and some base methods.
+  * Add Loading View Model -- This would create a Loading View Model which is used to handle the loading state of the application
   * Add Glide -- This would add [Glide](https://github.com/bumptech/glide) library to your dependencies
   * Add Picasso -- This would add [Picasso](http://square.github.io/picasso/) library to your dependencies
 
