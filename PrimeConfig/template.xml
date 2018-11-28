@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="Prime Config"
+    description="Creates the main package structure and needed files to start a new project.">
+
+    <category value="Prime" />
+	<parameter id="addRetrofit" name="Add Retrofit Configuration" default="true" type="boolean" help="Whether or not to add dependencies, create Dagger Module and API class for Retrofit "/>
+	<parameter id="addBaseActivity" name="Add Base Activity " default="true" type="boolean" help="Whether or not to add a Base Activity class to handle managing of composite disposables "/>
+	<parameter id="addLoadingViewModel" name="Add Loading View Model " default="true" type="boolean" help="Whether or not to add a Loading View Model that would take care of application loading state. "/>
+	<parameter id="addGlide" name="Add Glide " default="false" type="boolean" help="Whether or not to add a dependency for Glide "/>
+	<parameter id="addPicasso" name="Add Picasso " default="false" type="boolean" help="Whether or not to add a dependency for Picasso "/>
+
+	<globals file="globals.xml.ftl"/>
+    <execute file="recipe.xml.ftl" />
+
+</template>

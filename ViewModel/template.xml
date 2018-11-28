@@ -1,0 +1,32 @@
+<template 
+    format="4" 
+    revision="1" 
+    name="View Model"
+	minApi="9"
+    minBuildApi="14"
+    description="Create a new View Model" >
+
+    <category value="Prime" />
+   
+	
+    <parameter 
+        id="viewModelName" 
+        name="View Model Name" 
+        type="string"
+        constraints="class|unique|nonempty" 
+        default="Blank" 
+        help="Name of your new View Model" />
+
+ <parameter
+        id="viewModelFileName"
+        name="File Name"
+        type="string"
+        constraints="unique|nonempty"
+        suggest="${viewModelName}ViewModel"
+        default="BlankViewModel"
+        help="The name of the file that contains the View Model"/>
+		
+    <globals file="globals.xml.ftl" /> 
+    <execute file="recipe.xml.ftl" />
+
+</template> 
