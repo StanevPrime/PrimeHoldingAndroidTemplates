@@ -7,35 +7,54 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-<#if applicationPackage??>
-import ${applicationPackage}.R
-import ${applicationPackage}.databinding.Activity${activityName}Binding
-</#if>
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
+<#if applicationPackage??>
+import ${applicationPackage}.R
+import ${applicationPackage}.databinding.Activity${activityName}Binding
+import ${applicationPackage}.misc.extension.addTo
+import ${applicationPackage}.application.BaseApplication
 
-class ${activityName}Activity : AppCompatActivity() {
+	<#if isChildActivity>
+		import ${applicationPackage}.view.base.BaseActivity
+	<#else>
+		import androidx.appcompat.app.AppCompatActivity
+	</#if>
+</#if>
+
+
+
+
+class ${activityName}Activity :	<#if isChildActivity> BaseActivity()<#else>AppCompatActivity()</#if>
+{
 
     private lateinit var activityBinding: Activity${activityName}Binding
-
+	<#if !isChildActivity>
     private val compositeDisposable = CompositeDisposable()
-
+	</#if>
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: ${viewModel}InputOutput by lazy { ViewModelProviders.of(this, viewModelFactory).get(${viewModel}::class.java) }
+    private val viewModel: ${viewModelName}Type by lazy { ViewModelProviders.of(this, viewModelFactory).get(${viewModel}::class.java) }
 	
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        BaseApplication.appComponent.inject(this)
         activityBinding = DataBindingUtil.setContentView(this, R.layout.${activityLayout})
-
     }
 	
-	override fun onStart() {
-        super.onStart()
+	<#if isChildActivity>
+	  override fun bind() {
+		viewModel
+                .bind(activityBinding)
+                .addTo(compositeDisposable)
+    }
+	
+	<#else>
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+		super.onPostCreate(savedInstanceState)
         viewModel
                 .bind(activityBinding)
                 .addTo(compositeDisposable)
@@ -51,12 +70,8 @@ class ${activityName}Activity : AppCompatActivity() {
         super.onDestroy()
         compositeDisposable.dispose()
     }
-
-    internal fun render(any: Any) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-
-    }
-
+	</#if>
+  
     companion object {
         fun start(sourceActivity: Activity) {
             sourceActivity.startActivity(Intent(sourceActivity, ${activityName}Activity::class.java))
@@ -64,20 +79,20 @@ class ${activityName}Activity : AppCompatActivity() {
     }
 }
 
-private fun ${viewModel}InputOutput.bind(binding: Activity${activityName}Binding): List<Disposable> {
+private fun ${viewModelName}Type.bind(binding: Activity${activityName}Binding): List<Disposable> {
     return listOf(
             output.bind(binding),
             input.bind(binding)
     ).flatten()
 }
 
-private fun ${viewModel}Input.bind(binding: Activity${activityName}Binding): List<Disposable> {
+private fun ${viewModelName}Input.bind(binding: Activity${activityName}Binding): List<Disposable> {
     return listOf(
 
     )
 }
 
-private fun ${viewModel}Output.bind(binding: Activity${activityName}Binding): List<Disposable> {
+private fun ${viewModelName}Output.bind(binding: Activity${activityName}Binding): List<Disposable> {
     return listOf(
 
 

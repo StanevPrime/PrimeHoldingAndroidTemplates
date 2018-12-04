@@ -6,7 +6,7 @@
     minBuildApi="14"
     description="Create an activity to be implemented as View" >
 
-    <category value="Activity" />
+    <category value="Prime" />
    
 	
     <parameter 
@@ -16,7 +16,13 @@
         constraints="class|unique|nonempty" 
         default="Blank" 
         help="Name of your new Activity" />
-
+		
+	<parameter
+		id="isChildActivity" 
+		name="Inherit from BaseActivity" 
+		help="Whether or not to set BaseActivity as parent class forcing it to handle disposables." 
+		type="boolean" 
+		default="false"/>
 	 <thumbs>
         <!-- default thumbnail is required -->
         <thumb>template_blank_activity.png</thumb>
