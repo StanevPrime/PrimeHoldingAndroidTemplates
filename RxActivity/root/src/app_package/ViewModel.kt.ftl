@@ -55,6 +55,7 @@ init{
 
  override fun onCleared() {
         super.onCleared()
+		//clear your LoadingViewModel here if you use it in the file
         compositeDisposable.dispose()
     }
 }
