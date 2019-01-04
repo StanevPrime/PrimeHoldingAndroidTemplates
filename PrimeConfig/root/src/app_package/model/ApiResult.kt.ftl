@@ -1,4 +1,4 @@
-package ${packageName}.model
+package ${packageName}.model.api
 
 sealed class ApiResult<Data> {
   /**

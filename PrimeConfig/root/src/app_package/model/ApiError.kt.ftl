@@ -1,4 +1,4 @@
-package ${packageName}.model
+package ${packageName}.model.api
 
 import android.os.Parcelable
 import com.google.gson.Gson
@@ -7,21 +7,29 @@ import retrofit2.HttpException
 @Parcelize
 data class ApiError(val detail: String,
                     val status: HttpStatusCode,
-                    val title: String,
-                    val type: String,
-                    val validationMessages: HashMap<String, HashMap<String, String>>) : Parcelable {
+                    val title: String) : Parcelable {
 
 
     companion object {
 
         private val gson = Gson()
 
-        fun from(throwable: HttpException): ApiError {
-            return gson.fromJson(throwable.response().errorBody()?.charStream(), ApiError::class.java)
+       fun from(throwable: HttpException): ApiError {
+            val errorDetail = getErrorDetail(throwable)
+            return ApiError(errorDetail?.message?.message ?: "",
+                    HttpStatusCode.fromCode(throwable.code()),
+                    errorDetail?.message?.status ?: ""
+            )
         }
 
-        fun fromDetail(detail: String, status: HttpStatusCode): ApiError {
-            return ApiError(detail, status, "", "", HashMap())
+
+        private fun getErrorDetail(throwable: HttpException): ErrorDetail? {
+            return try {
+                val jObjError = JSONObject(throwable.response().errorBody()?.string())
+                gson.fromJson(jObjError.toString(), ErrorDetail::class.java)
+            } catch (e: Exception) {
+                ErrorDetail(throwable.code(), Message(throwable.localizedMessage, throwable.code().toString()))
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 package ${packageName}.misc.extension
 
 import android.util.Log
-import ${packageName}.model.ApiError
-import ${packageName}.model.ApiResult
+import ${packageName}.model.api.ApiError
+import ${packageName}.model.api.ApiResult
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
