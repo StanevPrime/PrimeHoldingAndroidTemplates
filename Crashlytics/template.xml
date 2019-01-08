@@ -7,6 +7,7 @@
 
     <category value="Prime" />
 	<parameter id="addCrashlytics" name="Add Crashlytics" default="true" type="boolean" help="Whether or not to add configure Firebase Crashlytics"/>
+	<parameter id="addAnalytics" name="Add Analytics" default="true" type="boolean" help="Whether or not to add configure Firebase Analytics"/>
 	
 	<globals file="globals.xml.ftl"/>
     <execute file="recipe.xml.ftl" />
