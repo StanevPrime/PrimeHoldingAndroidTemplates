@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<template
+    format="5"
+    revision="1"
+    name="Firebase Configuration"
+    description="Add Crashlytics or Analytics to an application.">
+
+    <category value="Prime" />
+	<parameter id="addCrashlytics" name="Add Crashlytics" default="true" type="boolean" help="Whether or not to add configure Firebase Crashlytics"/>
+	
+	<globals file="globals.xml.ftl"/>
+    <execute file="recipe.xml.ftl" />
+
+</template>
