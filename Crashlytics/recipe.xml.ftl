@@ -16,13 +16,10 @@
     </#if>
   			   
 	<#if addAnalytics>
-		<dependency mavenUrl="com.google.firebase:firebase-core:16.+" />
+	<dependency mavenUrl="com.google.firebase:firebase-core:16.+" />
 
 	<instantiate from="root/analytics/app_package/di/FirebaseModule.kt.ftl"
-                 to="${escapeXmlAttribute(srcOut)}/di/module/FirebaseModule.kt" />			
-				 
-	<merge from="root/analytics/app_package/di/AppComponent.kt.ftl"
-                 to="${escapeXmlAttribute(srcOut)}/di/component/AppComponent.kt" />						 
+                 to="${escapeXmlAttribute(srcOut)}/di/module/FirebaseModule.kt" />							 
     </#if>
 
 </recipe>
