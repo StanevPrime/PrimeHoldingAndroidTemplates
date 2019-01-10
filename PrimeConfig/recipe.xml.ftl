@@ -48,7 +48,9 @@
 	<mkdir at="${escapeXmlAttribute(srcOut)}/view/" />
 	<mkdir at="${escapeXmlAttribute(srcOut)}/viewmodel/" />
 
- 				 
+ 	<instantiate from="root/src/app_package/model/IError.kt.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/model/error/IError.kt" />		
+		
 	<instantiate from="root/src/app_package/model/HttpStatusCode.kt.ftl"
                  to="${escapeXmlAttribute(srcOut)}/model/api/HttpStatusCode.kt" />					
 	

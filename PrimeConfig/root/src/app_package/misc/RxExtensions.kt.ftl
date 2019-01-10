@@ -1,7 +1,7 @@
 package ${packageName}.misc.extension
 
 import android.util.Log
-import ${packageName}.model.api.ApiError
+import ${packageName}.model.error.IError
 import ${packageName}.model.api.ApiResult
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
@@ -72,7 +72,7 @@ fun <T> Observable<ApiResult<T>>.whenSuccess(): Observable<T> =
 /**
  * Filter when an [ApiResult] is [ApiResult.Error]
  */
-fun <T> Observable<ApiResult<T>>.whenError(): Observable<ApiError> =
+fun <T> Observable<ApiResult<T>>.whenError(): Observable<IError> =
         filter { it -> it is ApiResult.Error }
                 .map { it -> it as ApiResult.Error<T> }
                 .map { it -> it.error }
