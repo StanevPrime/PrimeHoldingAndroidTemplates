@@ -3,7 +3,7 @@ package ${packageName}.view.base
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import ${packageName}.model.ApiError
+import ${packageName}.model.error.IError
 import io.reactivex.disposables.CompositeDisposable
 
 
@@ -37,7 +37,7 @@ abstract class BaseActivity : AppCompatActivity() {
         //TODO set up your way of showing loading either here or in child activities
     }
 
-    open fun renderErrorState(error: ApiError) {
+    open fun renderErrorState(error: IError) {
         //TODO set up your way of showing errors either here or in child activities
     }
 

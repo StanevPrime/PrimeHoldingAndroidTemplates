@@ -1,4 +1,4 @@
-package ${packageName}.model
+package ${packageName}.model.api
 
 /**
  * Implementation type HttpStatusCode
@@ -91,6 +91,13 @@ enum class HttpStatusCode(
      */
     fun asText(): String {
         return text
+    }
+	
+	 companion object {
+
+        fun fromCode(code: Int): HttpStatusCode {
+            return HttpStatusCode.values().first { it -> it.code == code }
+        }
     }
 
 }
