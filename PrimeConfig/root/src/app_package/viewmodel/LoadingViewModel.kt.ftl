@@ -17,9 +17,9 @@ import javax.inject.Inject
 //region View Model Interfaces
 interface LoadingInput {
     /**
-     * Adds a new loading observable
+     * Adds new loading observables
      */
-    fun addLoadingObservable(observable: Observable<Boolean>)
+    fun addLoadingObservable(vararg observable: Observable<Boolean>)
 }
 
 interface LoadingOutput {
@@ -85,13 +85,13 @@ class LoadingViewModel @Inject constructor() : ViewModel(), LoadingInput, Loadin
 
 
     //region Input methods
-    override fun addLoadingObservable(observable: Observable<Boolean>) {
+    override fun addLoadingObservables(vararg observable: Observable<Boolean>) {
         newLoadingObservable.onNext(observable)
     }
     // endregion
 
 
-    override fun onCleared() {
+    public override fun onCleared() {
         super.onCleared()
         compositeDisposable.dispose()
     }

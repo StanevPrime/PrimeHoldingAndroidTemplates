@@ -1,27 +1,41 @@
-package ${packageName}.model
+package ${packageName}.model.api
 
-import android.os.Parcelable
+
 import com.google.gson.Gson
+import ${packageName}.model.error.IError
 import kotlinx.android.parcel.Parcelize
+import org.json.JSONObject
 import retrofit2.HttpException
-@Parcelize
-data class ApiError(val detail: String,
-                    val status: HttpStatusCode,
-                    val title: String,
-                    val type: String,
-                    val validationMessages: HashMap<String, HashMap<String, String>>) : Parcelable {
 
+
+@Parcelize
+data class ApiError(
+    override var description: String = "Network Error",
+    val status: HttpStatusCode = HttpStatusCode.NO_CONTENT,
+    val details: String
+) : IError {
 
     companion object {
-
         private val gson = Gson()
 
         fun from(throwable: HttpException): ApiError {
-            return gson.fromJson(throwable.response().errorBody()?.charStream(), ApiError::class.java)
+            val errorDetail = getErrorDetail(throwable)
+            return ApiError(
+                errorDetail?.message?.status ?: "",
+                HttpStatusCode.fromCode(throwable.code()),
+                errorDetail?.message?.message ?: ""
+            )
         }
 
-        fun fromDetail(detail: String, status: HttpStatusCode): ApiError {
-            return ApiError(detail, status, "", "", HashMap())
+
+        private fun getErrorDetail(throwable: HttpException): ErrorDetail? {
+            return try {
+                val jObjError = JSONObject(throwable.response().errorBody()?.string())
+                gson.fromJson(jObjError.toString(), ErrorDetail::class.java)
+            } catch (e: Exception) {
+                ErrorDetail(throwable.code(), Message(throwable.localizedMessage, throwable.code().toString()))
+            }
         }
+
     }
 }

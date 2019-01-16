@@ -6,4 +6,4 @@ There are cases when the View Model gets too big and this is when we have to sep
 1. Select your View Model name (excluding the *ViewModel* part of the title) and press Finish
 
 1. Done! The following file will be generated:
-    ![Alt text](Images/ViewModel_Result.png?raw=true "Result View Model")
+    ![Alt text](https://github.com/StanevPrime/PrimeHoldingAndroidTemplates/blob/develop/Images/ViewModel_Result.png "Result View Model")

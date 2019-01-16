@@ -48,15 +48,23 @@
 	<mkdir at="${escapeXmlAttribute(srcOut)}/view/" />
 	<mkdir at="${escapeXmlAttribute(srcOut)}/viewmodel/" />
 
- 				 
+ 	<instantiate from="root/src/app_package/model/IError.kt.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/model/error/IError.kt" />		
+		
 	<instantiate from="root/src/app_package/model/HttpStatusCode.kt.ftl"
-                 to="${escapeXmlAttribute(srcOut)}/model/HttpStatusCode.kt" />		
-				 
-	<instantiate from="root/src/app_package/model/ApiError.kt.ftl"
-                 to="${escapeXmlAttribute(srcOut)}/model/ApiError.kt" />		
+                 to="${escapeXmlAttribute(srcOut)}/model/api/HttpStatusCode.kt" />					
 	
 	<instantiate from="root/src/app_package/model/ApiResult.kt.ftl"
-                 to="${escapeXmlAttribute(srcOut)}/model/ApiResult.kt" />	
+                 to="${escapeXmlAttribute(srcOut)}/model/api/ApiResult.kt" />				
+				 
+	<instantiate from="root/src/app_package/model/Message.kt.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/model/api/Message.kt" />		
+				 
+	<instantiate from="root/src/app_package/model/ErrorDetail.kt.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/model/api/ErrorDetail.kt" />					 
+	
+	<instantiate from="root/src/app_package/model/ApiError.kt.ftl"
+                 to="${escapeXmlAttribute(srcOut)}/model/api/ApiError.kt" />	
 
 	<instantiate from="root/src/app_package/misc/RxExtensions.kt.ftl"
                  to="${escapeXmlAttribute(srcOut)}/misc/extension/RxExtensions.kt" />			
